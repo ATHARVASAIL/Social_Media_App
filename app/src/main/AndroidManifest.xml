@@ -12,10 +12,12 @@
         android:theme="@style/Theme.Social_Media"
         tools:targetApi="31">
         <activity
-
+            android:name=".CreateProfile"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Register_Activity"
             android:exported="false"
