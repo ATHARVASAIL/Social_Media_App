@@ -21,20 +21,21 @@
         android:layout_margin="10dp"
         />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:cardPreventCornerOverlap="false"
-        app:cardCornerRadius="75dp">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        app:cardPreventCornerOverlap="false"-->
+<!--        app:cardCornerRadius="75dp">-->
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/iv_cp"
-            android:clickable="true"
-            android:scaleType="fitCenter"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_cp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:clickable="true"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            tools:ignore="SpeakableTextPresentCheck" />-->
 
-    </androidx.cardview.widget.CardView>
+<!--    </androidx.cardview.widget.CardView>-->
 
 
 

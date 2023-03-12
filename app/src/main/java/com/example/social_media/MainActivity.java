@@ -73,7 +73,4 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
     }
-    pulic void hello(){
-    
-    }
 }
