@@ -73,8 +73,4 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
     }
-    public void helo()
-    {
-        
-    }
 }
