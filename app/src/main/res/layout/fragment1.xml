@@ -11,6 +11,8 @@
         android:paddingStart="130sp"
         android:text="profile"
         android:textSize="50sp"
+        android:clickable="true"
+        android:id="@+id/tv.prof"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
