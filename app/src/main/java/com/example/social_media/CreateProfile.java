@@ -88,6 +88,7 @@ public class CreateProfile extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
+                //noinspection deprecation
                 startActivityForResult(intent,PICK_IMAGE);
             }
         });
@@ -129,7 +130,7 @@ public class CreateProfile extends AppCompatActivity {
             final StorageReference reference = storageReference.child(System.currentTimeMillis()+"."+getFileExt(imageUri));
             uploadTask = reference.putFile(imageUri);
 
-            Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if(!task.isSuccessful())
@@ -152,7 +153,7 @@ public class CreateProfile extends AppCompatActivity {
                         profile.put("email",email);
                         profile.put("phone_no",phone_no);
                         profile.put("bio",bio);
-                        profile.put("Uid",currentUserId);
+                        profile.put("uid",currentUserId);
                         profile.put("privacy","Public");
 
                         member.setName(name);
@@ -172,7 +173,8 @@ public class CreateProfile extends AppCompatActivity {
                                         handler.postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Intent intent = new Intent(CreateProfile.this, Fragment.class);
+                                                Intent intent = new Intent(CreateProfile.this,
+                                                        fragment1.class);
                                                 startActivity(intent);
                                             }
                                         },2000);
