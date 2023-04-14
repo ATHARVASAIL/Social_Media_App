@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    app:cardPreventCornerOverlap="false">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:id="@+id/vv_post_ind"
+        app:use_controller="true"
+        app:show_timeout="3000"
+        app:controller_layout_id="@layout/custom_exoplayer"
+        android:visibility="visible"
+        app:resize_mode="fixed_height"
+        />
+
+</androidx.cardview.widget.CardView>

@@ -41,10 +41,13 @@ public class Register_Activity extends AppCompatActivity {
         checkBox=findViewById(R.id.Register_checkBox);
         progressBar=findViewById(R.id.Register_progressbar_login);
         mAuth=FirebaseAuth.getInstance();
+        password_ET.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        confirm_pass_ET.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked)
                 {
                     password_ET.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
