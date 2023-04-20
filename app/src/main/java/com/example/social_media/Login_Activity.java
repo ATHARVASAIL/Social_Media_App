@@ -1,7 +1,8 @@
 package com.example.social_media;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,14 +14,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 public class Login_Activity extends AppCompatActivity {
 
     EditText email_ET,password_ET;
@@ -28,10 +30,13 @@ public class Login_Activity extends AppCompatActivity {
     CheckBox checkBox;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
+    TextView forgotpass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        forgotpass = findViewById(R.id.tv_forgot_password);
         email_ET=findViewById(R.id.User_Email);
         password_ET= findViewById(R.id.User_Password);
         register_btn=findViewById(R.id.login_to_signup);
@@ -70,9 +75,8 @@ public class Login_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = email_ET.getText().toString();
                 String password=password_ET.getText().toString();
-                if(!TextUtils.isEmpty(email) ||!TextUtils.isEmpty(password)) {
+                if(!TextUtils.isEmpty(email) &&!TextUtils.isEmpty(password)) {
                     progressBar.setVisibility(View.VISIBLE);
-
                     mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -92,8 +96,43 @@ public class Login_Activity extends AppCompatActivity {
                 }
             }
         });
-    }
+        forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = email_ET.getText().toString();
+                if (!TextUtils.isEmpty(email)) {
+                    AlertDialog.Builder builder =new AlertDialog.Builder(Login_Activity.this);
+                    builder.setTitle("Reset Password")
+                            .setMessage("Are you sure to reset password")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
 
+                                        mAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(Login_Activity.this, "Reset Link Sent", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(Login_Activity.this, "Error" + e, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                }
+                            })
+                            .setNegativeButton("No", (dialogInterface, i) -> {
+
+                            });
+                    builder.create();
+                    builder.show();
+                }
+                else {
+                    Toast.makeText(Login_Activity.this, "Please enter your email address.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
     private void sendtoMain() {
         Intent intent = new Intent(Login_Activity.this,MainActivity.class);
         startActivity(intent);

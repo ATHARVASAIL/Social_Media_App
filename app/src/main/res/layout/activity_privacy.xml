@@ -13,36 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:cardBackgroundColor="@color/white"
-<<<<<<< HEAD
         android:layout_marginBottom="100dp">
-=======
-        android:layout_marginBottom="100dp"
-        >
->>>>>>> f52f7cf4f0dc5db92031891a470004dc32ca01d3
+
 
         <TextView
             android:id="@+id/back_privacy"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-<<<<<<< HEAD
             android:drawableStart="@drawable/baseline_keyboard_arrow_left_24"
             android:padding="5dp"
             android:paddingStart="5dp"
             android:text="Account Status"
             android:textColor="@color/red"
             android:textSize="25sp" />
-=======
-            android:clickable="true"
-            android:padding="10dp"
-            android:paddingStart="5dp"
-            android:text="Account Status"
-            android:textColor="@color/red"
-            android:textSize="25sp"
-            
 
-            />
->>>>>>> f52f7cf4f0dc5db92031891a470004dc32ca01d3
 
     </androidx.cardview.widget.CardView>
     <TextView

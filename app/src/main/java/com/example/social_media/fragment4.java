@@ -83,7 +83,6 @@ public class fragment4 extends Fragment implements View.OnClickListener {
         db1 = database.getReference("All images").child(currentuid);
         db2 = database.getReference("All videos").child(currentuid);
         db3 = database.getReference("All post");
-
         button.setOnClickListener(this);
 
     }
