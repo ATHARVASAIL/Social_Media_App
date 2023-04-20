@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="1dp"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:drawableStart="@drawable/baseline_keyboard_arrow_left_24"
+        android:padding="5dp"
+        android:paddingStart="5dp"
+        android:text="Comments"
+        android:textColor="@color/red"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_comment"
+        android:layout_width="match_parent"
+        android:layout_height="608dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:layout_margin="2dp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_addcomment"
+            android:layout_width="314dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:drawablePadding="7dp"
+            android:hint="Add Comment"
+            android:minHeight="48dp"
+            android:paddingStart="5dp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

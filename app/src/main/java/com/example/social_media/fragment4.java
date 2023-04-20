@@ -54,6 +54,8 @@ public class fragment4 extends Fragment implements View.OnClickListener {
     DatabaseReference reference, likeref , db1,db2,db3;
     Boolean likechecker = false;
 
+   String postkey;
+
 
 
     @Nullable
@@ -112,7 +114,7 @@ public class fragment4 extends Fragment implements View.OnClickListener {
                     protected void onBindViewHolder(@NonNull PostViewholder holder, int position, @NonNull Postmember model) {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         final String currentUserid = user.getUid();
-                        final String postkey = getRef(position).getKey();
+                        postkey = getRef(position).getKey();
 
                         holder.SetPost(getActivity(), model.getName(), model.getUrl(), model.getPostUri(), model.getTime(), model.getUid(), model.getType(), model.getDesc());
 
@@ -127,6 +129,13 @@ public class fragment4 extends Fragment implements View.OnClickListener {
                             @Override
                             public void onClick(View view) {
                                 showDialog(name,url,time,userid,type);
+                            }
+                        });
+                        holder.commentbtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent =new Intent(getActivity(),CommentActivity.class);
+                                startActivity(intent);
                             }
                         });
                         holder.likebtn.setOnClickListener((view) -> {

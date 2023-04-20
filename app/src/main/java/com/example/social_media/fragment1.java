@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class fragment1 extends Fragment implements View.OnClickListener {
     ImageView imageView;
     TextView nameEt,profEt,bioEt,emailEt,phoneEt,postTv;
     ImageButton ib_edit,imageButtonMenu;
+    Button btnsendmessage;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,11 +52,13 @@ public class fragment1 extends Fragment implements View.OnClickListener {
         postTv = getActivity().findViewById(R.id.tv_post_f1);
         ib_edit = getActivity().findViewById(R.id.ib_edit_f1);
         imageButtonMenu = getActivity().findViewById(R.id.ib_menu_f1);
+        btnsendmessage = getActivity().findViewById(R.id.btn_sendmessage_f1);
+
         imageButtonMenu.setOnClickListener(this);
         ib_edit.setOnClickListener(this);
         imageView.setOnClickListener(this);
         postTv.setOnClickListener(this);
-
+        btnsendmessage.setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +81,10 @@ public class fragment1 extends Fragment implements View.OnClickListener {
             case R.id.tv_post_f1:
                 Intent intent5 =new Intent(getActivity(),IndividualPost.class);
                 startActivity(intent5);
+                break;
+            case R.id.btn_sendmessage_f1:
+                Intent in =new Intent(getActivity(),ChatActivity.class);
+                startActivity(in);
                 break;
 
         }
