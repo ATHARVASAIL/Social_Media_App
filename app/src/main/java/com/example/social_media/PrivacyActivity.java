@@ -2,8 +2,11 @@ package com.example.social_media;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,7 +33,7 @@ import org.w3c.dom.Text;
 public class PrivacyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] status ={"Choose any one","Public","Private"};
-    TextView status_tv ;
+    TextView status_tv,back ;
     Spinner spinner;
     Button button;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -43,6 +46,7 @@ public class PrivacyActivity extends AppCompatActivity implements AdapterView.On
         status_tv = findViewById(R.id.tv_status);
         spinner = findViewById(R.id.spinner);
         button = findViewById(R.id.btn_privacy);
+        back= findViewById(R.id.back_privacy);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String currentid = user.getUid();
@@ -59,8 +63,16 @@ public class PrivacyActivity extends AppCompatActivity implements AdapterView.On
                 savePrivacy();
             }
         });
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Fragment fragment= new fragment1();
+//                FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.privacy,fragment).commit();
+//
+//            }
+//        });
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -123,7 +135,11 @@ public class PrivacyActivity extends AppCompatActivity implements AdapterView.On
                             Toast.makeText(PrivacyActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                         }
                     });
+
         }
 
+
     }
+
+
 }

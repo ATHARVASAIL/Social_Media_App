@@ -102,7 +102,6 @@ public class fragment4 extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-
         FirebaseRecyclerOptions<Postmember> options =
                 new FirebaseRecyclerOptions.Builder<Postmember>()
                         .setQuery(reference, Postmember.class)
@@ -171,6 +170,7 @@ public class fragment4 extends Fragment implements View.OnClickListener {
                         return  new PostViewholder(view);
                     }
                 };
+
 
         firebaseRecyclerAdapter.startListening();
 
