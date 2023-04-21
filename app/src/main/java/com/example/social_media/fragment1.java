@@ -59,6 +59,8 @@ public class fragment1 extends Fragment implements View.OnClickListener {
         imageView.setOnClickListener(this);
         postTv.setOnClickListener(this);
         btnsendmessage.setOnClickListener(this);
+
+        String nameResult,bioResult,emailResult,phoneResult,url,profResult;
     }
 
     @Override
@@ -93,6 +95,12 @@ public class fragment1 extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
+        final String[] nameResult = new String[1];
+        final String[] bioResult = new String[1];
+        final String[] emailResult = new String[1];
+        final String[] phoneResult = new String[1];
+        final String[] url = new String[1];
+        final String[] profResult = new String[1];
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String currentid=user.getUid();
         DocumentReference reference;
@@ -105,23 +113,24 @@ public class fragment1 extends Fragment implements View.OnClickListener {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if(task.getResult().exists()){
 
-                            String nameResult = task.getResult().getString("name");
-                            String bioResult = task.getResult().getString("bio");
-                            String emailResult = task.getResult().getString("email");
-                            String phoneResult = task.getResult().getString("phone_no");
-                            String url = task.getResult().getString("url");
-                            String profResult = task.getResult().getString("prof");
+                             nameResult[0] = task.getResult().getString("name");
+                             bioResult[0] = task.getResult().getString("bio");
+                             emailResult[0] = task.getResult().getString("email");
+                             phoneResult[0] = task.getResult().getString("phone_no");
+                             url[0] = task.getResult().getString("url");
+                             profResult[0] = task.getResult().getString("prof");
 
-                            Picasso.get().load(url).into(imageView);
-                            nameEt.setText(nameResult);
-                            bioEt.setText(bioResult);
-                            emailEt.setText(emailResult);
-                            phoneEt.setText(phoneResult);
-                            profEt.setText(profResult);
+
                         }else {
                             Intent intent = new Intent(getActivity(),CreateProfile.class);
                             startActivity(intent);
                         }
+                        Picasso.get().load(url[0]).into(imageView);
+                        nameEt.setText(nameResult[0]);
+                        bioEt.setText(bioResult[0]);
+                        emailEt.setText(emailResult[0]);
+                        phoneEt.setText(phoneResult[0]);
+                        profEt.setText(profResult[0]);
                     }
                 });
     }

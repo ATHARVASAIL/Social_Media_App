@@ -4,21 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ChatActivity">
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/search_user"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/search_back"
-        android:drawableStart="@drawable/ic_search_24"
-        android:drawablePadding="10dp"
-        android:hint="Search"
-        android:padding="10dp"
-        android:paddingStart="20dp"
-        android:textColor="@color/black" />
+    <SearchView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:queryHint="Search Here..."
+    android:id="@+id/search_view_frag2"
+    android:iconifiedByDefault="false"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

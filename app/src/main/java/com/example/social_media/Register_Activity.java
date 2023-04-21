@@ -68,7 +68,7 @@ public class Register_Activity extends AppCompatActivity {
                 String password=password_ET.getText().toString();
                 String confirm_password=confirm_pass_ET.getText().toString();
 
-                if(!TextUtils.isEmpty(email) ||!TextUtils.isEmpty(password) ||!TextUtils.isEmpty(confirm_password) )
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(confirm_password) )
                 {
                     if (password.equals(confirm_password)){
                         progressBar.setVisibility(View.VISIBLE);
