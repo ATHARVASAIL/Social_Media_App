@@ -47,16 +47,11 @@ import java.security.Permission;
 import java.util.List;
 
 public class fragment4 extends Fragment implements View.OnClickListener {
-
     Button button;
     RecyclerView recyclerView;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference, likeref , db1,db2,db3;
     Boolean likechecker = false;
-
-   String postkey;
-
-
 
     @Nullable
     @Override
@@ -112,7 +107,7 @@ public class fragment4 extends Fragment implements View.OnClickListener {
                     protected void onBindViewHolder(@NonNull PostViewholder holder, int position, @NonNull Postmember model) {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         final String currentUserid = user.getUid();
-                        postkey = getRef(position).getKey();
+                        final String postkey = getRef(position).getKey();
 
                         holder.SetPost(getActivity(), model.getName(), model.getUrl(), model.getPostUri(), model.getTime(), model.getUid(), model.getType(), model.getDesc());
 
@@ -127,13 +122,6 @@ public class fragment4 extends Fragment implements View.OnClickListener {
                             @Override
                             public void onClick(View view) {
                                 showDialog(name,url,time,userid,type);
-                            }
-                        });
-                        holder.commentbtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent =new Intent(getActivity(),CommentActivity.class);
-                                startActivity(intent);
                             }
                         });
                         holder.likebtn.setOnClickListener((view) -> {
@@ -257,12 +245,12 @@ public class fragment4 extends Fragment implements View.OnClickListener {
                 //Deleting from firebase Storage
                 StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(url);
                 reference.delete()
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(getActivity(), "Deleted", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(getActivity(), "Deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 alertDialog.dismiss();
             }
         });
@@ -378,5 +366,3 @@ public class fragment4 extends Fragment implements View.OnClickListener {
     }
 
 }
-
-

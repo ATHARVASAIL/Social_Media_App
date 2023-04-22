@@ -1,7 +1,5 @@
 package com.example.social_media;
 
-import android.icu.text.SimpleDateFormat;
-import android.net.Uri;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;

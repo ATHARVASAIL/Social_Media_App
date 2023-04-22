@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,26 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.searchVi
         holder.prof.setText(user.getProf());
 
         holder.url.setText(user.getUrl());
+        holder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.btn.getText().equals("FOLLOW"))
+                {
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("FOLLOW")
+                            .child(user.getName())
+                            .child("FOLLOWING")
+
+                            .setValue(true);
+
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("FOLLOW")
+                            .child(user.getName())
+                            .child("FOLLOWER")
+                            .setValue(true);
+                }
+            }
+        });
     }
 
     @Override
@@ -46,11 +69,13 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.searchVi
 
     public static class searchViewHolder extends RecyclerView.ViewHolder{
         TextView name,prof,url;
+        Button btn;
         public searchViewHolder(@NonNull View itemView) {
             super(itemView);
             url=itemView.findViewById(R.id.image_profile);
             prof=itemView.findViewById(R.id.prof);
             name=itemView.findViewById(R.id.username);
+            btn=itemView.findViewById(R.id.btn_follow);
 
         }
     }

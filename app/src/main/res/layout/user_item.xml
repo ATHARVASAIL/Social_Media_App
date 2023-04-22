@@ -49,15 +49,19 @@
             android:maxLines="1"/>
 
     </LinearLayout>
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:background="@drawable/button_back"
         android:id="@+id/btn_follow"
-        android:textColor="@color/grey"
+        android:layout_width="133dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:visibility="gone"/>
+        android:layout_marginStart="270dp"
+        android:background="@drawable/button"
+        android:text="FOLLOW"
+        android:textColor="@color/white"
+        />
 
 
 </RelativeLayout>

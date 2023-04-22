@@ -25,7 +25,7 @@ ArrayList<CommentModel> arrComments = new ArrayList<>();
     Button btn_comment;
     EditText add_comment;
     fragment4 f4= new fragment4();
-    String postkey=f4.postkey;
+    String postkey;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference comment_reference;
