@@ -43,6 +43,17 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/typingstatus"
+            android:layout_width="113dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="15dp"
+            android:text="is typing ..."
+            android:textColor="#06C84C"
+            android:textSize="15sp"
+            android:visibility="invisible"/>
+
 
     </LinearLayout>
 

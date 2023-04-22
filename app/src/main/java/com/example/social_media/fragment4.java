@@ -1,9 +1,5 @@
 package com.example.social_media;
 
-import static android.Manifest.permission.INTERNET;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.ClipData;
@@ -17,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +49,7 @@ public class fragment4 extends Fragment implements View.OnClickListener {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference, likeref , db1,db2,db3;
     Boolean likechecker = false;
+    LinearLayoutManager linearLayoutManager;
 
     @Nullable
     @Override
@@ -79,6 +77,11 @@ public class fragment4 extends Fragment implements View.OnClickListener {
         db2 = database.getReference("All videos").child(currentuid);
         db3 = database.getReference("All post");
         button.setOnClickListener(this);
+        
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
 
     }
 
@@ -148,7 +151,6 @@ public class fragment4 extends Fragment implements View.OnClickListener {
                         });
 
                     }
-
                     @NonNull
                     @Override
                     public PostViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -157,14 +159,8 @@ public class fragment4 extends Fragment implements View.OnClickListener {
                         return  new PostViewholder(view);
                     }
                 };
-
-
         firebaseRecyclerAdapter.startListening();
-
         recyclerView.setAdapter(firebaseRecyclerAdapter);
-
-
-
     }
 
 

@@ -3,9 +3,7 @@ package com.example.social_media;
 public class MessageMember {
 
     String message , time ,date,type,sender_uid,receiver_uid;
-
     public MessageMember(){
-
     }
 
     public String getMessage() {

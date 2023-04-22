@@ -32,19 +32,7 @@ public class searchViewholder extends RecyclerView.ViewHolder {
         Picasso.get().load(url).into(imageView);
         nametv.setText(name);
         proftv.setText(prof);
-//        sendmessagebtn = itemView.findViewById(R.id.send_message_chat_item_tvbtn);
 
-//        if(userid.equals(uid)){
-//            Picasso.get().load(url).into(imageView);
-//            nametv.setText(name);
-//            proftv.setText(prof);
-////            sendmessagebtn.setVisibility(View.INVISIBLE);
-//        }else {
-//            Picasso.get().load(url).into(imageView);
-//            nametv.setText(name);
-//            proftv.setText(prof);
-////            sendmessagebtn.setVisibility(View.VISIBLE);
-//        }
     }
 }
 

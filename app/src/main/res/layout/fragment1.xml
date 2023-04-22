@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_container_1">
+    android:id="@+id/fragment_container_1"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

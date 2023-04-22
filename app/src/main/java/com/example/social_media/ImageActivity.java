@@ -123,8 +123,4 @@ public class ImageActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 }

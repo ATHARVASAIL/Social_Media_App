@@ -68,7 +68,6 @@ public class ImageTab extends Fragment {
                         final String postkey = getRef(position).getKey();
 
                         holder.SetImage(getActivity(), model.getName(), model.getUrl(), model.getPostUri(), model.getTime(), model.getUid(), model.getType(), model.getDesc());
-
                     }
 
                     @NonNull
@@ -79,8 +78,6 @@ public class ImageTab extends Fragment {
                         return  new Imagesfragment(view);
                     }
                 };
-
-
         firebaseRecyclerAdapter.startListening();
 
         GridLayoutManager glm = new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false);

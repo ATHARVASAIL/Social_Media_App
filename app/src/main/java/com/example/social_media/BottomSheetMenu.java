@@ -3,6 +3,7 @@ package com.example.social_media;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -134,6 +135,7 @@ public class BottomSheetMenu extends BottomSheetDialogFragment {
         });
         return view;
     }
+
 
     private void logout() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

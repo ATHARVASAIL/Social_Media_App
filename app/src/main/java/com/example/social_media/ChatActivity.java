@@ -20,6 +20,11 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermissionActivity;
+import com.gun0912.tedpermission.normal.TedPermission;
+
+import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 

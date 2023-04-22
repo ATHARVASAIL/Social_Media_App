@@ -25,7 +25,6 @@ import com.squareup.picasso.Picasso;
 
 public class fragment1 extends Fragment implements View.OnClickListener {
 
-
     ImageView imageView;
     TextView nameEt,profEt,bioEt,emailEt,phoneEt,postTv;
     ImageButton ib_edit,imageButtonMenu;
@@ -36,6 +35,7 @@ public class fragment1 extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.fragment1,container,false);
         return view;
+
 
     }
 

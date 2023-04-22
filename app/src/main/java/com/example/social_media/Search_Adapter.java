@@ -40,26 +40,7 @@ public class Search_Adapter extends RecyclerView.Adapter<Search_Adapter.searchVi
         holder.prof.setText(user.getProf());
 
         holder.url.setText(user.getUrl());
-        holder.btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(holder.btn.getText().equals("FOLLOW"))
-                {
-                    FirebaseDatabase.getInstance().getReference()
-                            .child("FOLLOW")
-                            .child(user.getName())
-                            .child("FOLLOWING")
 
-                            .setValue(true);
-
-                    FirebaseDatabase.getInstance().getReference()
-                            .child("FOLLOW")
-                            .child(user.getName())
-                            .child("FOLLOWER")
-                            .setValue(true);
-                }
-            }
-        });
     }
 
     @Override

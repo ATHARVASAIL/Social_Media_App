@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +25,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -35,11 +40,12 @@ public class MessageActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageView imageView;
     ImageButton send_btn,camera_btn,mic_btn;
-    TextView username;
+    TextView username,typingtv;
     EditText messageEt;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference rootref1,rootref2;
+    DatabaseReference rootref1,rootref2,typingref;
     MessageMember messageMember;
+    Boolean typingchecker = false;
     String receiver_name,receiver_uid,sender_uid,url;
 
 
@@ -68,6 +74,7 @@ public class MessageActivity extends AppCompatActivity {
         messageEt = findViewById(R.id.messageEt);
         send_btn = findViewById(R.id.imageButton_send);
         username = findViewById(R.id.username_message_tv);
+        typingtv= findViewById(R.id.typingstatus);
 
         Picasso.get().load(url).into(imageView);
         username.setText(receiver_name);
@@ -76,6 +83,9 @@ public class MessageActivity extends AppCompatActivity {
 
         rootref1 = database.getReference("Message").child(sender_uid).child(receiver_uid);
         rootref2 = database.getReference("Message").child(receiver_uid).child(sender_uid);
+        typingref = database.getReference("typing");
+
+
 
         send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +94,70 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
+        typingref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(sender_uid).hasChild(receiver_uid))
+                {
+                    typingtv.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    typingtv.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        messageEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                typing();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    private void typing() {
+
+        typingchecker=true;
+        typingref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(typingchecker.equals(true))
+                {
+                    if(snapshot.child(receiver_uid).hasChild(sender_uid))
+                    {
+                        typingchecker=false;
+                    }
+                    else {
+                        typingref.child(receiver_uid).child(sender_uid).setValue(true);
+                        typingchecker=false;
+                    }
+                }
+                else
+                {
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -147,6 +221,16 @@ public class MessageActivity extends AppCompatActivity {
             messageEt.setText("");
         }
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        typingref.child(receiver_uid).child(sender_uid).removeValue();
+
+    }
+    public void onBackPressed(){
+        super.onBackPressed();
+        typingref.child(receiver_uid).child(sender_uid).removeValue();
     }
 
 }
