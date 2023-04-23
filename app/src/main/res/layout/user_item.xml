@@ -50,18 +50,41 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_follow"
-        android:layout_width="133dp"
-        android:layout_height="37dp"
-        android:layout_alignParentStart="true"
+    <TextView
+        android:id="@+id/view_profile_tvBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="270dp"
-        android:background="@drawable/button"
-        android:text="FOLLOW"
-        android:textColor="@color/white"
-        />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="View Profile"
+        android:textColor="#1B69BD"
+        android:textSize="20sp" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/btn_follow"-->
+<!--        android:layout_width="133dp"-->
+<!--        android:layout_height="37dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginStart="270dp"-->
+<!--        android:background="@drawable/button"-->
+<!--        android:text="FOLLOW"-->
+<!--        android:textColor="@color/white"-->
+<!--        />-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/btn_follow"-->
+<!--        android:layout_width="36dp"-->
+<!--        android:layout_height="43dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_gravity="left|center_vertical"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:src="@drawable/unfollow" />-->
 
 
 </RelativeLayout>

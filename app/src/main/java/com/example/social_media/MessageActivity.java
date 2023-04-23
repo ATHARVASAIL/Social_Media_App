@@ -3,12 +3,14 @@ package com.example.social_media;
 import static com.example.social_media.R.id.rv_message;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -47,6 +49,9 @@ public class MessageActivity extends AppCompatActivity {
     MessageMember messageMember;
     Boolean typingchecker = false;
     String receiver_name,receiver_uid,sender_uid,url;
+    Uri uri;
+    private static final int PICK_IMAGE = 1;
+
 
 
 
@@ -129,6 +134,37 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
+        camera_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent, PICK_IMAGE);
+            }
+        });
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        try {
+            if (requestCode == PICK_IMAGE || resultCode == RESULT_OK || data != null || data.getData() != null) {
+                uri = data.getData();
+                String url = uri.toString();
+                Intent intent = new Intent(MessageActivity.this,SendImage.class);
+                intent.putExtra("u",url);
+                intent.putExtra("n",receiver_name);
+                intent.putExtra("ruid",receiver_uid);
+                intent.putExtra("suid",sender_uid);
+                startActivity(intent);
+            }else {
+                Toast.makeText(this, "No File Selected", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error:" + e, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void typing() {

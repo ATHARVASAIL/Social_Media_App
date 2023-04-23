@@ -2,15 +2,15 @@ package com.example.social_media;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,6 +37,9 @@ public class UpdateProfile extends AppCompatActivity {
     DocumentReference documentReference;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String currentuid;
+    ImageView imageView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class UpdateProfile extends AppCompatActivity {
         currentuid = user.getUid();
         documentReference=db.collection("user").document(currentuid);
 
+        imageView=findViewById(R.id.iv_up);
         etBio = findViewById(R.id.et_bio_up);
         etEmail = findViewById(R.id.et_email_up);
         etname = findViewById(R.id.et_name_up);
@@ -54,6 +58,12 @@ public class UpdateProfile extends AppCompatActivity {
         etPhone = findViewById(R.id.et_Phone_No_up);
         button = findViewById(R.id.btn_up);
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateImage();
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,8 +71,6 @@ public class UpdateProfile extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @Override
@@ -86,12 +94,19 @@ public class UpdateProfile extends AppCompatActivity {
                             etEmail.setText(emailResult);
                             etPhone.setText(phoneResult);
                             etProfession.setText(profResult);
+                            Picasso.get().load(url).into(imageView);
                         }else {
                             Toast.makeText(UpdateProfile.this, "No Profile", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 });
+    }
+
+
+    private void updateImage() {
+        Intent intent1 =new Intent(this,ImageActivity.class);
+        startActivity(intent1);
     }
 
     private void updateProfile() {

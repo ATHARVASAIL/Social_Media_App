@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="7dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -38,28 +38,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/send_message_chat_item_tvbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="Send Message"
-                android:textColor="#0000FF"
-                android:textSize="16sp" />
-
+            android:orientation="vertical"
+            android:layout_marginStart="6dp">
             <TextView
                 android:id="@+id/name_chat_item_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="name"
                 android:paddingStart="5dp"
+                android:layout_marginTop="4dp"
                 android:textColor="@color/dark_grey"
-                android:textSize="10sp" />
-
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/prof_chat_item_tv"
                 android:layout_width="wrap_content"
@@ -68,9 +59,17 @@
                 android:paddingStart="5dp"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
-
-
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/send_message_chat_item_tvbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="15dp"
+            android:text="Send Message"
+            android:textColor="#5656EC"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

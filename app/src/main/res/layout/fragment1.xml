@@ -13,7 +13,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="5dp"
         app:cardBackgroundColor="@android:color/white">
 
         <ImageButton
@@ -51,23 +51,24 @@
         android:layout_height="110dp"
         android:gravity="center"
         android:layout_marginBottom="10dp"
+
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             app:cardPreventCornerOverlap="false"
-            app:cardCornerRadius="50dp"
-            android:layout_gravity="center_vertical"
-            android:elevation="8dp"
+            app:cardCornerRadius="40dp"
+            android:layout_gravity="start|center_vertical"
+            android:elevation="10dp"
             app:cardElevation="10dp">
 
             <ImageView
                 android:id="@+id/iv_f1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
                 android:background="@drawable/baseline_person_24"
+                android:clickable="true"
                 android:scaleType="fitCenter"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -80,7 +81,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_name_f1"
                 android:layout_marginBottom="4dp"
@@ -298,7 +299,5 @@
 <!--        app:layout_constraintHorizontal_bias="0.0"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
 
 </LinearLayout>
