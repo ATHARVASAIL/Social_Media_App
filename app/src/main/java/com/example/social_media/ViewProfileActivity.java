@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,20 +28,25 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 public class ViewProfileActivity extends AppCompatActivity {
 
     ImageView userProfileImage;
     TextView followers,following,user_name,user_prof,user_bio,user_email,user_phone_no;
     Button follow;
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
-    DatabaseReference following_ref ,follower_ref,follow_ref, request_ref;
+    DatabaseReference following_ref ,follower_ref,follow_ref, request_ref , reference;
 
     String privacy;
     int follower_count = 0 ,following_count = 0;
     boolean follow_checker =false;
 
+    String currentUser_name, currentUser_prof, currentUser_url;
     String name,prof,bio,email,phoneNo,url;
     String user_profile;
+    All_User_Member member;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +78,8 @@ public class ViewProfileActivity extends AppCompatActivity {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String currentUserUid = currentUser.getUid();
 
+
+
         follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +97,7 @@ public class ViewProfileActivity extends AppCompatActivity {
                                     following_ref.child(currentUserUid).child(user_profile).removeValue();
                                     follow_checker = false;
                                 }else{
-                                    request_ref.child(user_profile).child(currentUserUid).setValue(true);
+                                    requestFollow(currentUserUid);
                                     follow_checker = false;
                                 }
                                 if (snapshot.child("Follower").child(user_profile).hasChild(currentUserUid)) {
@@ -124,6 +132,39 @@ public class ViewProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void requestFollow(String currentUserUid) {
+        reference = FirebaseDatabase.getInstance().getReference("All Users");
+        reference.child(currentUserUid).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+                    if(task.getResult().exists()){
+                        DataSnapshot dataSnapshot = task.getResult();
+                        currentUser_name = String.valueOf(dataSnapshot.child("name").getValue());
+                        currentUser_prof = String.valueOf(dataSnapshot.child("prof").getValue());
+                        currentUser_url = String.valueOf(dataSnapshot.child("url").getValue());
+                    }else {
+                        Toast.makeText(ViewProfileActivity.this, "user doesnot found", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (!TextUtils.isEmpty(currentUser_name) || !TextUtils.isEmpty(currentUser_prof) || !TextUtils.isEmpty(currentUser_url) || !TextUtils.isEmpty(currentUserUid) ){
+
+                        HashMap<String,Object> m =new HashMap<String,Object>();
+                        m.put("name",currentUser_name);
+                        m.put("prof",currentUser_prof);
+                        m.put("url",currentUser_url);
+                        m.put("uid",currentUserUid);
+                        request_ref.child(user_profile).child(currentUserUid).setValue(m);
+
+                    }
+
+                }else {
+                    Toast.makeText(ViewProfileActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 

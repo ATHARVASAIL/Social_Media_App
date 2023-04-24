@@ -91,13 +91,13 @@ public class ImageActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                // On success, update the user's document in Firestore to remove the URL
-                                documentReference.update("url", FieldValue.delete())
+                                // On success, remove the URL from the database
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("All User").child(currentid).child(url);
+                                databaseReference.child("url").setValue(null)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 // On success, display a toast message and finish the activity
-                                                
                                                 Toast.makeText(ImageActivity.this, "Profile picture deleted", Toast.LENGTH_SHORT).show();
                                                 finish();
                                             }
